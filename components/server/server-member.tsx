@@ -34,8 +34,8 @@ export const ServerMember = ({ member, server }: ServerMemberProps) => {
     <button
       onClick={onClick}
       className={cn(
-        "group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-[#6DA4AA] dark:hover:bg-zinc-700/80 transition mb-1",
-        params?.memberId === member.id && "bg-zinc-700/20 dark:bg-zinc-700"
+        "group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-[#6DA4AA] dark:hover:bg-[#0A152B] transition mb-1",
+        params?.memberId === member.id && "bg-[#c0c0c1a9] dark:bg-[#1f273880]"
       )}
     >
       <UserAvatar
