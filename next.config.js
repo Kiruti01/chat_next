@@ -8,14 +8,8 @@ const nextConfig = {
 
     return config;
   },
-  reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "utfs.io",
-      },
-    ],
+    domains: ["uploadthing.com", "utfs.io"],
   },
 };
 
