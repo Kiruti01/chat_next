@@ -9,11 +9,17 @@ const nextConfig = {
     return config;
   },
   images: {
+<<<<<<< HEAD
     domains: [
       "uploadthing.com",
       "utfs.io"
     ]
   }
 }
+=======
+    domains: ["uploadthing.com", "utfs.io"],
+  },
+};
+>>>>>>> 221e631183579bd140dbe509ee423df5913473b6
 
 module.exports = nextConfig
