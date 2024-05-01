@@ -24,7 +24,7 @@ export const useChatScroll = ({
       const scrollTop = topDiv?.scrollTop;
 
       if (scrollTop === 0 && shouldLoadMore) {
-        loadMore()
+        loadMore();
       }
     };
 
@@ -32,7 +32,7 @@ export const useChatScroll = ({
 
     return () => {
       topDiv?.removeEventListener("scroll", handleScroll);
-    }
+    };
   }, [shouldLoadMore, loadMore, chatRef]);
 
   useEffect(() => {
@@ -48,16 +48,23 @@ export const useChatScroll = ({
         return false;
       }
 
-      const distanceFromBottom = topDiv.scrollHeight - topDiv.scrollTop - topDiv.clientHeight;
+      const distanceFromBottom =
+        topDiv.scrollHeight - topDiv.scrollTop - topDiv.clientHeight;
       return distanceFromBottom <= 100;
-    }
-
-    if (shouldAutoScroll()) {
-      setTimeout(() => {
-        bottomRef.current?.scrollIntoView({
-          behavior: "smooth",
-        });
-      }, 100);
-    }
+    };
+    // Function to handle scrolling into view
+    const scrollIntoViewSmoothly = () => {
+      if (shouldAutoScroll()) {
+        // Use async/await to properly handle asynchronous operations
+        (async () => {
+          // Wait for a brief moment before scrolling
+          await new Promise((resolve) => setTimeout(resolve, 100));
+          // Scroll the bottom element into view smoothly
+          bottomRef.current?.scrollIntoView({
+            behavior: "smooth",
+          });
+        })();
+      }
+    };
   }, [bottomRef, chatRef, count, hasInitialized]);
-}
+};

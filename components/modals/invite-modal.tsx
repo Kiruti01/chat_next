@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { Check, Copy, RefreshCw } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Dialog,
@@ -32,9 +32,12 @@ export const InviteModal = () => {
     navigator.clipboard.writeText(inviteUrl);
     setCopied(true);
 
-    setTimeout(() => {
-      setCopied(false);
-    }, 1000);
+    const resetCopiedStatus = () => {
+      setTimeout(() => {
+        setCopied(false);
+      }, 1000);
+    };
+
   };
 
   const onNew = async () => {
@@ -71,8 +74,8 @@ export const InviteModal = () => {
               value={inviteUrl}
             />
             <Button disabled={isLoading} onClick={onCopy} size="icon">
-              {copied 
-                ? <Check className="w-4 h-4" /> 
+              {copied
+                ? <Check className="w-4 h-4" />
                 : <Copy className="w-4 h-4" />
               }
             </Button>
