@@ -1,9 +1,9 @@
 "use client";
-import Picker from "@emoji-mart/react";
+
 import { Smile } from "lucide-react";
+import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import { useTheme } from "next-themes";
-// import styled from 'styled-components';
 
 import {
   Popover,
@@ -15,17 +15,22 @@ interface EmojiPickerProps {
   onChange: (value: string) => void;
 }
 
-export const EmojiPicker = ({ onChange }: EmojiPickerProps) => {
+export const EmojiPicker = ({
+  onChange,
+}: EmojiPickerProps) => {
   const { resolvedTheme } = useTheme();
+
   return (
     <Popover>
       <PopoverTrigger>
-        <Smile className="text-zinc-500 dark:text-zinc-400 hover:bg-[#6DA4AA] dark:hover:bg-[#83d0d8] rounded-full transition" />
+        <Smile
+          className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
+        />
       </PopoverTrigger>
-      <PopoverContent
-        side="right"
+      <PopoverContent 
+        side="right" 
         sideOffset={40}
-        className="bg-transparent border-none shadow-none mb-16 "
+        className="bg-transparent border-none shadow-none drop-shadow-none mb-16"
       >
         <Picker
           theme={resolvedTheme}
@@ -34,5 +39,5 @@ export const EmojiPicker = ({ onChange }: EmojiPickerProps) => {
         />
       </PopoverContent>
     </Popover>
-  );
-};
+  )
+}

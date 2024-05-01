@@ -22,26 +22,26 @@ export async function PATCH(
       where: {
         id: params.serverId,
         profileId: {
-          not: profile.id,
+          not: profile.id
         },
         members: {
           some: {
-            profileId: profile.id,
-          },
-        },
+            profileId: profile.id
+          }
+        }
       },
       data: {
         members: {
           deleteMany: {
-            profileId: profile.id,
-          },
-        },
-      },
+            profileId: profile.id
+          }
+        }
+      }
     });
 
     return NextResponse.json(server);
   } catch (error) {
-    console.log("SERVER_ID_LEAVE", Error);
+    console.log("[SERVER_ID_LEAVE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

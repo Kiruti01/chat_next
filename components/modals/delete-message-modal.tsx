@@ -1,8 +1,7 @@
 "use client";
 
-import axios from "axios";
 import qs from "query-string";
-
+import axios from "axios";
 import { useState } from "react";
 
 import {
@@ -13,9 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
 import { useModal } from "@/hooks/use-modal-store";
-
 import { Button } from "@/components/ui/button";
 
 export const DeleteMessageModal = () => {
@@ -42,7 +39,7 @@ export const DeleteMessageModal = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
@@ -58,15 +55,23 @@ export const DeleteMessageModal = () => {
         </DialogHeader>
         <DialogFooter className="bg-gray-100 px-6 py-4">
           <div className="flex items-center justify-between w-full">
-            <Button disabled={isLoading} onClick={onClose} variant="ghost">
+            <Button
+              disabled={isLoading}
+              onClick={onClose}
+              variant="ghost"
+            >
               Cancel
             </Button>
-            <Button disabled={isLoading} variant="primary" onClick={onClick}>
+            <Button
+              disabled={isLoading}
+              variant="primary"
+              onClick={onClick}
+            >
               Confirm
             </Button>
           </div>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

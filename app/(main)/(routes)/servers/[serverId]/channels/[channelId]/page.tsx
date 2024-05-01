@@ -13,10 +13,12 @@ interface ChannelIdPageProps {
   params: {
     serverId: string;
     channelId: string;
-  };
+  }
 }
 
-const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
+const ChannelIdPage = async ({
+  params
+}: ChannelIdPageProps) => {
   const profile = await currentProfile();
 
   if (!profile) {
@@ -33,15 +35,15 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
     where: {
       serverId: params.serverId,
       profileId: profile.id,
-    },
+    }
   });
 
   if (!channel || !member) {
     redirect("/");
   }
 
-  return (
-    <div className="bg-[#e7e7e7] dark:bg-[#151c2cfa] flex flex-col h-full">
+  return ( 
+    <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
       <ChatHeader
         name={channel.name}
         serverId={channel.serverId}
@@ -75,13 +77,21 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
         </>
       )}
       {channel.type === ChannelType.AUDIO && (
-        <MediaRoom chatId={channel.id} video={false} audio={true} />
+        <MediaRoom
+          chatId={channel.id}
+          video={false}
+          audio={true}
+        />
       )}
       {channel.type === ChannelType.VIDEO && (
-        <MediaRoom chatId={channel.id} video={true} audio={true} />
+        <MediaRoom
+          chatId={channel.id}
+          video={true}
+          audio={true}
+        />
       )}
     </div>
-  );
-};
-
+   );
+}
+ 
 export default ChannelIdPage;

@@ -1,7 +1,8 @@
+import { NextResponse } from "next/server";
+import { MemberRole } from "@prisma/client";
+
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { MemberRole } from "@prisma/client";
-import { NextResponse } from "next/server";
 
 export async function DELETE(
   req: Request,
@@ -9,10 +10,10 @@ export async function DELETE(
 ) {
   try {
     const profile = await currentProfile();
-
     const { searchParams } = new URL(req.url);
 
     const serverId = searchParams.get("serverId");
+
     if (!profile) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
@@ -33,9 +34,9 @@ export async function DELETE(
             profileId: profile.id,
             role: {
               in: [MemberRole.ADMIN, MemberRole.MODERATOR],
-            },
-          },
-        },
+            }
+          }
+        }
       },
       data: {
         channels: {
@@ -43,10 +44,10 @@ export async function DELETE(
             id: params.channelId,
             name: {
               not: "general",
-            },
-          },
-        },
-      },
+            }
+          }
+        }
+      }
     });
 
     return NextResponse.json(server);
@@ -91,9 +92,9 @@ export async function PATCH(
             profileId: profile.id,
             role: {
               in: [MemberRole.ADMIN, MemberRole.MODERATOR],
-            },
-          },
-        },
+            }
+          }
+        }
       },
       data: {
         channels: {
@@ -107,10 +108,10 @@ export async function PATCH(
             data: {
               name,
               type,
-            },
-          },
-        },
-      },
+            }
+          }
+        }
+      }
     });
 
     return NextResponse.json(server);
